@@ -1,0 +1,4 @@
+interface:
+  display_name: "亚马逊流程沉淀"
+  short_description: "将已验证的亚马逊工作流程整理成可供团队复用的独立技能"
+  default_prompt: "使用 $amazon-workflow-to-skill，把本次工作中已经验证的流程整理成团队可复用的技能。"
