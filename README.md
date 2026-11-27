@@ -11,12 +11,26 @@
 | 技能 | 用途 | 调用示例 |
 | --- | --- | --- |
 | [amazon-workflow-to-skill](skills/amazon-workflow-to-skill/SKILL.md) | 从实际任务、复盘记录或对话中提炼可复用流程，整理为独立技能 | `$amazon-workflow-to-skill 把刚才验证过的广告报表核对流程整理成技能。` |
+| [amazon-product-fact-verification](skills/amazon-product-fact-verification/SKILL.md) | 核对规格、包装、兼容性和其他商品事实的证据 | `$amazon-product-fact-verification 核对这份规格表和供应商答复。` |
+| [amazon-keyword-architecture](skills/amazon-keyword-architecture/SKILL.md) | 整理词表、标注关键词意图，并映射到 Listing 字段 | `$amazon-keyword-architecture 整理这份美国站关键词表。` |
+| [amazon-listing-copy](skills/amazon-listing-copy/SKILL.md) | 根据商品事实及关键词生成指定站点的文案草稿 | `$amazon-listing-copy 用这份规格和词表起草美国站 Listing。` |
+| [amazon-listing-audit](skills/amazon-listing-audit/SKILL.md) | 对照站点规则和商品证据审核现有 Listing | `$amazon-listing-audit 核对这份文案与证据是否一致。` |
+| [amazon-image-planning-review](skills/amazon-image-planning-review/SKILL.md) | 编制图片需求、核对图片与商品事实并整理审核项 | `$amazon-image-planning-review 根据事实表编制图片任务单。` |
+| [amazon-product-selection-scoring](skills/amazon-product-selection-scoring/SKILL.md) | 按项目的版本化评分规则比较选品候选并列出待补证据 | `$amazon-product-selection-scoring 按所附规则评审这三款候选产品。` |
 
-这个初始技能用于整理工作方法；具体选品、广告或库存业务技能由团队结合实际案例持续补充。
+六个业务技能从 [amazon-ai-ops](https://github.com/dreamtotoon/amazon-ai-ops) 整理而来。使用自己的项目资料、目标站点规则和有权限的数据源。清洗、规则校验及正式评分仍使用项目提供的确定性工具。资料或工具缺失时，技能会标注待验证项。
 
 ## 安装和调用
 
-### 在 Codex 中安装
+### 在 ChatGPT 工作空间中安装
+
+1. 管理员在 **Admin → Plugins → Add → Import marketplace** 输入这个仓库的 GitHub 地址。目录留空，分支使用 `main`。
+2. 导入成功后，在插件 **amazon-skills** 的安装策略中选择 **Installed for workspace**，核对角色的安装策略。
+3. 成员在新对话中输入 `@`，从技能列表选择所需技能。需要外部数据的任务使用成员已获授权的数据源。
+
+[工作空间导入与同步](https://learn.chatgpt.com/docs/enterprise/plugin-management)
+
+### 在 Codex 中安装单个技能
 
 把下面这段话复制给 Codex：
 
@@ -31,6 +45,8 @@ $amazon-workflow-to-skill 根据这次任务中已验证的步骤、判断依据
 ```
 
 安装仓库中的其他技能时，将链接最后的技能名称替换成对应文件夹名称。仓库地址是技能的来源，使用前需要在自己的 AI 工具中安装或加载；技能依赖的数据源仍需使用者自行配置和授权。
+
+通过插件安装时，在 Codex 的技能选择器中查找 `amazon-skills`，例如 `$amazon-skills:amazon-listing-audit`。
 
 ### 不使用 Git 命令的安装方式
 
@@ -50,10 +66,14 @@ $amazon-workflow-to-skill 根据这次任务中已验证的步骤、判断依据
 ## 目录约定
 
 ```text
+.agents/plugins/marketplace.json
+plugin.json
 skills/
   amazon-workflow-to-skill/
     SKILL.md
     agents/openai.yaml
+  <其他技能>/
+    SKILL.md
 templates/skill/SKILL.md
 scripts/validate_skills.py
 .github/workflows/validate-skills.yml

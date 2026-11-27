@@ -1,0 +1,9 @@
+{
+  "name": "amazon-team-skills",
+  "plugins": [
+    {
+      "name": "amazon-skills",
+      "source": { "source": "local", "path": "./" }
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+product_id: UNKNOWN
+marketplace: US
+brand:
+  value: UNKNOWN
+  status: UNKNOWN
+  source: UNKNOWN
+  verified_by: UNKNOWN
+  verified_at: UNKNOWN
+material:
+  value: UNKNOWN
+  status: UNKNOWN
+  source: UNKNOWN
+  verified_by: UNKNOWN
+  verified_at: UNKNOWN
+dimensions:
+  value: UNKNOWN
+  status: UNKNOWN
+  source: UNKNOWN
+  verified_by: UNKNOWN
+  verified_at: UNKNOWN
+package_quantity:
+  value: UNKNOWN
+  status: UNKNOWN
+  source: UNKNOWN
+  verified_by: UNKNOWN
+  verified_at: UNKNOWN
